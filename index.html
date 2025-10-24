@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorpius - Agentic AI Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 32px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 16px;
+            /* Remove white filter for black logo */
+        }
+        
+        .logo span {
+            font-weight: 700;
+            font-size: 24px;
+            color: #1f2937;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: #1f2937;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0067E1, #0A79FF);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(6, 103, 225, 0.3);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero > .container > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* centers horizontally */
+            justify-content: center; /* centers vertically, optional */
+            text-align: center; /* ensures text inside <p> is centered */
+        }
+        
+        .hero h1 {
+            font-size: 50px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            max-width: 900px;
+            color: #1f2937;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            border: 1px solid #d1d5db;
+            background: transparent;
+            color: #374151;
+            padding: 16px 36px;
+            border-radius: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #9ca3af;
+            background-color: #f9fafb;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #9CA3AF;
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card:hover {
+            border-color: #d1d5db;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7A3CF7, #0085FF);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        
+        .small-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+        
+        .card p {
+            color: #6b7280;
+            font-size: 18px;
+        }
+        
+        /* Form */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            color: #1f2937;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #0085FF;
+            box-shadow: 0 0 0 3px rgba(0, 133, 255, 0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0067E1, #0A79FF);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            padding: 64px 0;
+            text-align: center;
+        }
+        
+        .footer .logo span {
+            color: #1f2937;
+        }
+        
+        .footer p {
+            color: #6b7280;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="Scorpius_logo_black.png" alt="Scorpius Logo">
+                    <span>Scorpius Networks</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#why-scorpius">Why Scorpius</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="btn-primary" onclick="scrollToSection('contact')">Request Demo</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div>
+                <h1>Scorpius – An Agentic AI Platform for Enterprise IT and Industrial IoT</h1>
+                <p>Scorpius is defining the future of Enterprise IT operations: a fully autonomous, self-healing infrastructure for Enterprise IT and Industrial IoT worldwide. Our autonomous Agentic AI platform continuously learns from Enterprise IT and Industrial Ops environments to detect, predict and fix issues, without human intervention.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('contact')">Request Demo</button>
+                    <button class="btn-secondary" onclick="scrollToSection('how-it-works')">Learn How It Works</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p class="section-subtitle">Our four-step autonomous process transforms your IT operations through intelligent automation</p>
+            
+            <div class="grid grid-4">
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="eye" width="32" height="32"></i>
+                    </div>
+                    <h3>Understand</h3>
+                    <p>Ingests and integrates data from diverse sources to build a comprehensive operational context. This enables the system to 'see' the environment holistically and accurately.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="brain" width="32" height="32"></i>
+                    </div>
+                    <h3>Reason</h3>
+                    <p>Analyzes contextual data, formulates hypotheses, draws inferences, and identifies cause-effect relationships to guide decision-making.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="lightbulb" width="32" height="32"></i>
+                    </div>
+                    <h3>Take Action</h3>
+                    <p>Interacts with software and infrastructure tools to propose or implement changes—closing the loop between analysis and operational execution.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="repeat" width="32" height="32"></i>
+                    </div>
+                    <h3>Learn</h3>
+                    <p>Continuously evolves by observing the outcomes of its actions, integrating human feedback, and refining its internal models to improve over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section id="solutions" class="section">
+        <div class="container">
+            <h2>Solutions</h2>
+            <p class="section-subtitle">Choose the approach that best fits your organization's needs</p>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="wrench" width="28" height="28"></i>
+                    </div>
+                    <h3>Self-Serve</h3>
+                    <p>Using integrated Agent Studio, a user can easily create an Agent to perform the desired actions.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <i data-lucide="users" width="28" height="28"></i>
+                    </div>
+                    <h3>Need Help</h3>
+                    <p>Scorpius Team can also help you with solutioning and develop custom Agents for your needs.</p>
+                    <button class="btn-secondary" style="margin-top: 24px;">Contact Our Team</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Scorpius -->
+    <section id="why-scorpius" class="section">
+        <div class="container">
+            <h2>Why Scorpius</h2>
+            <p class="section-subtitle">Five key differentiators that set us apart in the enterprise AI landscape</p>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="icon small-icon">
+                        <i data-lucide="lightbulb" width="24" height="24"></i>
+                    </div>
+                    <h3>A New Category: Agentic AI for IT & Industrial Ops</h3>
+                    <p>We're not another observability and monitoring tool. Scorpius is pioneering Agentic AI-powered autonomous remediation, a step beyond AI-Ops, designed to detect, predict, and fix issues before they impact business outcomes.</p>
+                </div>
+                <div class="card">
+                    <div class="icon small-icon">
+                        <i data-lucide="trending-up" width="24" height="24"></i>
+                    </div>
+                    <h3>Outcomes Over Alerts</h3>
+                    <p>Legacy platforms focus on reducing noise or speeding up detection. Scorpius flips the script: our platform measures success in downtime prevented, MTTR reduced, and productivity gained, not just dashboards delivered.</p>
+                </div>
+                <div class="card">
+                    <div class="icon small-icon">
+                        <i data-lucide="building" width="24" height="24"></i>
+                    </div>
+                    <h3>Engineered for Enterprise Complexity</h3>
+                    <p>Enterprise IT and AI-first data centers demand resilience. Seamlessly integrates with legacy and cloud-native systems, delivering consistent reliability across Enterprise IT and industrial operations.</p>
+                </div>
+                <div class="card">
+                    <div class="icon small-icon">
+                        <i data-lucide="trending-up" width="24" height="24"></i>
+                    </div>
+                    <h3>ROI as the Benchmark</h3>
+                    <p>Clear, measurable outcomes, reduced downtime, exceed SLAs, lower operational costs, and higher team productivity are the value drivers we deliver.</p>
+                </div>
+                <div class="card">
+                    <div class="icon small-icon">
+                        <i data-lucide="brain" width="24" height="24"></i>
+                    </div>
+                    <h3>Multi-Agent Intelligence</h3>
+                    <p>Our orchestrated network of agents collaborates in real time to analyze, decide, and remediate pushing automation to true autonomy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2>Team</h2>
+            <p class="section-subtitle">Meet the experienced leaders driving innovation in enterprise AI</p>
+            
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <h3>About the Founding Team</h3>
+                <p>Our founding team brings decades of experience developing and operating large-scale, complex Enterprise IT and AI-First infrastructures, with deep industry insights and proven execution from leadership roles at Equinix, NTT, and Oracle.</p>
+                <div style="display: flex; justify-content: center; gap: 48px; margin-top: 32px; opacity: 0.6;">
+                    <div style="font-size: 24px; font-weight: 700;">Equinix</div>
+                    <div style="font-size: 24px; font-weight: 700;">NTT</div>
+                    <div style="font-size: 24px; font-weight: 700;">Oracle</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Request Demo</h2>
+            <p class="section-subtitle">See Scorpius in action and discover how autonomous AI can transform your operations</p>
+            
+            <div class="form-container">
+                <form id="demoForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" id="jobTitle" name="jobTitle" required placeholder="Your job title">
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" name="companyName" required placeholder="Your company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Business Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@company.com">
+                    </div>
+                    <button type="submit" class="submit-btn">Request Demo</button>
+                </form>
+                
+                <div id="successMessage" style="display: none; text-align: center; padding: 32px;">
+                    <div style="width: 64px; height: 64px; background-color: #10B981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                        <i data-lucide="check" width="32" height="32"></i>
+                    </div>
+                    <h3>Demo Request Submitted!</h3>
+                    <p>Our team will contact you within 24 hours to schedule your personalized demo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 24px;">
+                <img src="Scorpius_logo_black.png" alt="Scorpius Logo">
+                <span>Scorpius Networks</span>
+            </div>
+            <p>Building an autonomous, self-learning Agentic AI platform designed to detect, predict, and remediate IT issues, without human input or delay.</p>
+            <div style="border-top: 1px solid #374151; margin-top: 32px; padding-top: 32px;">
+                <p>© Scorpius Networks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Form handling
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('demoForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    form.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    form.reset();
+                }, 3000);
+            }, 1000);
+        }
+        
+        // Add click events to navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                scrollToSection(sectionId);
+            });
+        });
+    </script>
+</body>
+</html>
