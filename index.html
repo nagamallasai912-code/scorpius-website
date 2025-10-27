@@ -344,6 +344,7 @@
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#solutions">Solutions</a></li>
                     <li><a href="#why-scorpius">Why Scorpius</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=ZDufceBtV_E" target="_blank">Video</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -583,11 +584,20 @@
         // Add click events to navigation links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+
+                // If it's an external link (starts with http), allow normal navigation
+                if (href.startsWith('http')) {
+                    return; // Let browser open YouTube normally
+                }
+
+                // Otherwise, handle smooth scrolling for internal links
                 e.preventDefault();
-                const sectionId = link.getAttribute('href').substring(1);
+                const sectionId = href.substring(1);
                 scrollToSection(sectionId);
             });
         });
     </script>
 </body>
+
 </html>
